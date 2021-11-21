@@ -11,7 +11,7 @@ namespace ConsoleApp14.Models
     {
         public string SectionName { get; set; }
         public string SubjectName { get; set; }
-        public DateTime StartFrom { get; set; }
-        public DateTime EndAt { get; set; }
+        public string StartFrom { get; set; }
+        public string EndAt { get; set; }
     }
 }

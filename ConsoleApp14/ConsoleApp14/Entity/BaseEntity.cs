@@ -8,6 +8,6 @@ namespace ConsoleApp14.Entity
 {
     public class BaseEntity
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
     }
 }

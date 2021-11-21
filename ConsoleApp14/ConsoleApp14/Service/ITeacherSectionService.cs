@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp14.Service
 {
-    public interface ISchoolClassService
+    public interface ITeacherSectionService
     {
-        List<SchoolClass> GetAllSchoolClasses();
+        List<ClassTime> GetAllClassTime();
     }
 }

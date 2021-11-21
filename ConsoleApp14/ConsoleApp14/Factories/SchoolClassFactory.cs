@@ -1,4 +1,4 @@
-﻿using ConsoleApp14.Class;
+﻿using ConsoleApp14.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,28 +17,30 @@ namespace ConsoleApp14.Factories
 
             for(int i=0;i<classes.Count-1;i++)
             {
-                ids += classes[i] + ",";
+                ids += classes[i].ID + ",";
             }
-            ids += classes[classes.Count - 1];
+            ids += classes[classes.Count - 1].ID;
+            
 
-            var sql = @"select c.ID,ct.StartFrom,ct.EndAt,s.Name,sb.Name from Class c
+            var sql1 = @"select c.ID,ct.StartFrom,ct.EndAt,s.Name,sb.Name as SubjectName from SchoolClass c
                         inner join ClassSectionMapping csm on csm.ClassID=c.ID
                         inner join Section s on s.ID= csm.SectionID
                         inner join ClassTime ct on ct.ClassSectionID= csm.ID
                         inner join [Subject] sb on sb.ID= ct.SubjectID
-                        where c.Id in ("+ids+");";
-            var reader = DataAdapter.DataAdapter.GetReader(sql);
+                        where c.ID in ("+ids+");";
+
+            var reader = DataAdapters.GetReader(sql1);
 
             var models = new List<SchoolClassModel>();
             while (reader.Read())
             {
                 models.Add(new SchoolClassModel()
                 {
-                    Id = Convert.ToInt32( reader["id"] ),
+                    ID = Convert.ToInt32( reader["ID"] ),
                     SubjectName = reader["SubjectName"].ToString(),
-                    SectionName = reader["SectionName"].ToString(),
-                    StartFrom = Convert.ToDateTime( reader["StartFrom"] ),
-                    EndAt = Convert.ToDateTime(reader["EndAt"])
+                    SectionName = reader["Name"].ToString(),
+                    StartFrom = reader["StartFrom"].ToString(),
+                    EndAt = reader["EndAt"].ToString()
                 });
             }
             return models;

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp14.Models
+namespace ConsoleApp14.Service
 {
-    public class BaseModel
+    public interface IInsertUsersService
     {
-        public int ID { get; set; }
+        int SetNewUsers();
     }
 }

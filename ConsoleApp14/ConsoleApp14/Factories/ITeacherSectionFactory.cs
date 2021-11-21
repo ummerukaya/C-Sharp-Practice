@@ -1,5 +1,4 @@
-﻿
-using ConsoleApp14.Entity;
+﻿using ConsoleApp14.Entity;
 using ConsoleApp14.Models;
 using System;
 using System.Collections.Generic;
@@ -9,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp14.Factories
 {
-    public interface ISchoolClassFactory
+    public interface ITeacherSectionFactory
     {
-        List<SchoolClassModel> PrepareAllClassesFactory(List<SchoolClass> classes);
+        List<TeacherSectionModel> PrepareAllTeacherSectionFactory(List<ClassTime> classtime);
     }
 }

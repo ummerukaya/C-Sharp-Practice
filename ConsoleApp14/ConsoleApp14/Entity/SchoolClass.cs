@@ -1,17 +1,10 @@
-﻿using ConsoleApp14.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace ConsoleApp14.Class
+namespace ConsoleApp14.Entity
 {
     public class SchoolClass : BaseEntity
     {
-        public string Classname { get; set; }
-        public int SectionId { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime StartFrom { get; set; }
+        public DateTime EndTo { get; set; }
     }
 }

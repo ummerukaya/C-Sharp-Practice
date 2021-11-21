@@ -1,4 +1,5 @@
-﻿using ConsoleApp14.Class;
+﻿using ConsoleApp14.DataAdapter;
+using ConsoleApp14.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,16 @@ namespace ConsoleApp14.Service
     {
         public List<SchoolClass> GetAllSchoolClasses()
         {
-            var sql = "select * from SchoolClass";
-            var reader = DataAdapter.DataAdapter.GetReader(sql);
+            var sql = "select * from SchoolClass;";
+            var reader = DataAdapters.GetReader(sql);
             var classList = new List<SchoolClass>();
             while(reader.Read())
             {
                 classList.Add(new SchoolClass()
                 {
-                    Id = Convert.ToInt32( reader["id"] ),
-                    SectionId = Convert.ToInt32(reader["SectionId"]),
-                    Classname = reader["Classname"].ToString(),
-                    StartTime = Convert.ToDateTime(reader["StartTime"]),
-                    EndTime = Convert.ToDateTime( reader["EndTime"] )
+                    ID = Convert.ToInt32( reader["ID"] ),
+                    StartFrom = Convert.ToDateTime(reader["StartFrom"]),
+                    EndTo = Convert.ToDateTime( reader["EndTo"] )
                 });
             }
             return classList;
