@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp14.Service
 {
-    public class TeacherSectionService:ITeacherSectionService
+    public class ClassTimeService:IClassTimeService
     {
         public List<ClassTime> GetAllClassTime()
         {
@@ -26,6 +26,7 @@ namespace ConsoleApp14.Service
                     EndAt = reader["EndAt"].ToString()
                 });
             }
+            reader.Close();
             return classTimeList;
         }
     }

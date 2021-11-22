@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp14.Service
 {
-    public interface ITeacherSectionService
+    public interface IUsersService
     {
-        List<ClassTime> GetAllClassTime();
+        void AddNewUsers(Users users);
+        void DeleteFromUsers(Users users);
+        void UpdateUsers(Users users);
     }
 }

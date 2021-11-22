@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp14.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp14.Service
 {
-    public interface IUpdateTableService
+    public interface IClassTimeService
     {
-        int UpdateTable();
+        List<ClassTime> GetAllClassTime();
     }
 }
