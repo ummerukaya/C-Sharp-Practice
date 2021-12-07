@@ -25,22 +25,14 @@ namespace ConsoleApp14.Service
         }
         public void DeleteFromUsers(Users users)
         {
-            if (users.Name==null)
-            {
-                throw new ValidationException("Error.");
-            }
-            var sql = @"delete from Users where Name='" + users.Name + "';";
+           var sql = @"delete from Users where Name='" + users.Name + "';";
            var write = DataAdapters.SetCommand(sql);
            write.ExecuteNonQuery();         
         }
 
         public void UpdateUsers(Users users)
         {
-            if (users.Name == null)
-            {
-                throw new ValidationException("Error.");
-            }
-            var sql = "update Users set Name = @Name, email = @email Where Name ='" + users.Name + "';";
+           var sql = "update Users set Name = @Name, email = @email Where Name ='" + users.Name + "';";
            var write = DataAdapters.SetCommand(sql);
            write.Parameters.AddWithValue("@Name", "Islam Saiful");
            write.Parameters.AddWithValue("@Gender","Male");
