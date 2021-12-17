@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestBlog2.Factory;
+using TestBlog2.Service;
 
 namespace TestBlog2
 {
@@ -24,6 +26,11 @@ namespace TestBlog2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+#if DEBUG
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+#endif
+            services.AddScoped<IBlogPostService, BlogPostService>();
+            services.AddScoped<IBlogPostFactory, BlogPostFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

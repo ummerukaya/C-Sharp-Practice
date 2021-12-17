@@ -10,11 +10,11 @@ namespace TestBlog2.Service
     {
         List<BlogPost> GetAllBlogPosts();
 
-        BlogPost GetBlogPost(int id);
+        BlogPost GetBlogPostById(int id);
 
-        BlogPost UpdateBlogPost(BlogPost blogPost);
+        void UpdateBlogPost(BlogPost blogPost, BlogPost updatedBlogPost);
 
-        BlogPost DeleteBlogPost(BlogPost blogPost);
+        void DeleteBlogPost(BlogPost blogPost);
         
     }
 }

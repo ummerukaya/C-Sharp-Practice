@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestBlog2.DataSource;
 using TestBlog2.Entity;
+using TestBlog2.Models;
 
 namespace TestBlog2.Service
 {
     public class BlogPostService : IBlogPostService
     {
-        public BlogPost DeleteBlogPost(BlogPost blogPost)
+        public BlogPost GetBlogPostById(int id)
         {
-            throw new NotImplementedException();
+           var a = Datas.blogPosts.Where(x => x.Id == id).FirstOrDefault();
+           return a;
         }
-
         public List<BlogPost> GetAllBlogPosts()
         {
-            throw new NotImplementedException();
+            return Datas.blogPosts;
         }
-
-        public BlogPost GetBlogPost(int id)
+        public void DeleteBlogPost(BlogPost blogPost)
         {
-            throw new NotImplementedException();
+            Datas.blogPosts.Remove(blogPost);
         }
-
-        public BlogPost UpdateBlogPost(BlogPost blogPost)
+        public void UpdateBlogPost(BlogPost blogPost,BlogPost updatedBlogPost)
         {
-            throw new NotImplementedException();
+            var ind = Datas.blogPosts.IndexOf(blogPost);
+            Datas.blogPosts[ind].Title = updatedBlogPost.Title;
+            Datas.blogPosts[ind].Authorname = updatedBlogPost.Authorname;
+            Datas.blogPosts[ind].CreatedAt = updatedBlogPost.CreatedAt;
+            Datas.blogPosts[ind].BlogBody = updatedBlogPost.BlogBody;
         }
     }
 }

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestBlog2.DataSource;
+using TestBlog2.Entity;
 using TestBlog2.Factory;
 using TestBlog2.Service;
 
@@ -21,23 +23,36 @@ namespace TestBlog2.Controllers
             _blogPostFactory = blogPostFactory;
         }
         // GET: HomeController1
-        public ActionResult GetAll()
+        [Route("Blog")]
+        public IActionResult GetAll()
         {
             var blogPosts = _blogPostService.GetAllBlogPosts();
-
+            
             var models = _blogPostFactory.PrepareBlogPosts(blogPosts);
 
             return View(models);
         }
 
         // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        [Route("Blog/Details/{id}")]
+        public IActionResult Details(int id)
         {
-            return View();
+            var blogPost = _blogPostService.GetBlogPostById(id);
+            if (blogPost == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                return View(model);
+            }
         }
 
         // GET: HomeController1/Create
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
@@ -45,11 +60,13 @@ namespace TestBlog2.Controllers
         // POST: HomeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(BlogPost blogPost)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Datas.blogPosts.Add(blogPost);
+              
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -58,19 +75,36 @@ namespace TestBlog2.Controllers
         }
 
         // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        [Route("Blog/Edit/{id}")]
+        public IActionResult Edit(int id)
         {
-            return View();
+            var blogPost = _blogPostService.GetBlogPostById(id);
+            if (blogPost == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                return View(model);
+            }
         }
 
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(BlogPost blogPost)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var blog = blogPost;
+                var b = _blogPostService.GetBlogPostById(blogPost.Id);
+                if (b != null)
+                {
+                    _blogPostService.UpdateBlogPost(b,blog);
+                }
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -79,19 +113,37 @@ namespace TestBlog2.Controllers
         }
 
         // GET: HomeController1/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        [Route("Blog/Delete/{id}")]
+        public IActionResult Delete(int id)
         {
-            return View();
+            var blogPost = _blogPostService.GetBlogPostById(id);
+            if (blogPost == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                return View(model);
+            }
+            
         }
 
         // POST: HomeController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(BlogPost blogPost)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var b = _blogPostService.GetBlogPostById(blogPost.Id);
+                if (b != null)
+                {
+                    _blogPostService.DeleteBlogPost(b);
+                }
+                
+                return RedirectToAction("Index");
             }
             catch
             {

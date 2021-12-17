@@ -9,39 +9,56 @@ namespace TestBlog2.DataSource
 {
     public class Datas
     {
-        public static List<BlogPost> blogPostsModels = new List<BlogPost>()
+       
+        public static List<BlogPost> blogPosts = new List<BlogPost>()
         {
             new BlogPost()
             {
                 Id=1,
-                Authorname="Umme",
+                Authorname="Umme Rukaya",
                 CreatedAt = DateTime.Now,
-                BlogBody = "lorem lorem",
-                Title = "Dummy"
+                BlogBody = "Galaxies are groups of stars and other " +
+                "space objects held together by gravity. There are more " +
+                "than 100 billion galaxies in the universe, each presenting" +
+                " beautiful structures that can be seen in telescope images " +
+                "taken of the distant universe.",
+                Title = "Galaxy"
             },
              new BlogPost()
             {
                 Id=2,
-                Authorname="Umme",
+                Authorname="Umme Rukaya",
                 CreatedAt = DateTime.Now,
-                BlogBody = "lorem lorem",
-                Title = "Dummy"
+                BlogBody = "Galaxies are groups of stars and other " +
+                "space objects held together by gravity. There are more " +
+                "than 100 billion galaxies in the universe, each presenting" +
+                " beautiful structures that can be seen in telescope images " +
+                "taken of the distant universe.",
+                Title = "Galaxy"
             },
               new BlogPost()
             {
                 Id=3,
-                Authorname="Umme",
+                Authorname="Umme Rukaya",
                 CreatedAt = DateTime.Now,
-                BlogBody = "lorem lorem",
-                Title = "Dummy"
+                BlogBody = "Galaxies are groups of stars and other " +
+                "space objects held together by gravity. There are more " +
+                "than 100 billion galaxies in the universe, each presenting" +
+                " beautiful structures that can be seen in telescope images " +
+                "taken of the distant universe.",
+                Title = "Galaxy"
             },
                new BlogPost()
             {
                 Id=4,
-                Authorname="Umme",
+                Authorname="Umme Rukaya",
                 CreatedAt = DateTime.Now,
-                BlogBody = "lorem lorem",
-                Title = "Dummy"
+                BlogBody = "Galaxies are groups of stars and other " +
+                "space objects held together by gravity. There are more " +
+                "than 100 billion galaxies in the universe, each presenting" +
+                " beautiful structures that can be seen in telescope images " +
+                "taken of the distant universe.",
+                Title = "Galaxy"
             },
         };
     }

@@ -1,8 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@{ 
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="text-light">Welcome to home page</h1>
+        <p class="lead text-muted text-light">introduction</p>
+    </div>
+</section>
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <partial name="_BlogContent" model="new BlogPostsModel()"/>
+            </div>
+            <div class="col-md-4">
+                <partial name="_BlogContent" model="new BlogPostsModel()"/>
+            </div>
+            <div class="col-md-4">
+                <partial name="_BlogContent" model="new BlogPostsModel()"/>
+            </div>
+        </div>
+    </div>
+ </div>
