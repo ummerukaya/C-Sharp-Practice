@@ -9,9 +9,20 @@ namespace TestBlog2.Factory
 {
     public class BlogPostFactory : IBlogPostFactory
     {
-        public BlogPostsModel PrepareBlogPost(BlogPost blogPost)
+        public BlogPost PrepareBlogPost(BlogPostModel blogPostModel)
         {
-            var model = new BlogPostsModel();
+            var entity = new BlogPost();
+            entity.Id = blogPostModel.Id;
+            entity.Title = blogPostModel.Title;
+            entity.Authorname = blogPostModel.Authorname;
+            entity.CreatedAt = blogPostModel.CreatedAt;
+            entity.BlogBody = blogPostModel.BlogBody;
+            return entity;
+        }
+
+        public BlogPostModel PrepareBlogPostModel(BlogPost blogPost)
+        {
+            var model = new BlogPostModel();
             model.Id = blogPost.Id;
             model.Title = blogPost.Title;
             model.Authorname = blogPost.Authorname;
@@ -20,12 +31,12 @@ namespace TestBlog2.Factory
             return model;
         }
 
-        public List<BlogPostsModel> PrepareBlogPosts(List<BlogPost> blogPosts)
+        public List<BlogPostModel> PrepareBlogPosts(List<BlogPost> blogPosts)
         {
-            var models = new List<BlogPostsModel>();
+            var models = new List<BlogPostModel>();
             for(var i = 0; i < blogPosts.Count; i++)
             {
-                models.Add(new BlogPostsModel()
+                models.Add(new BlogPostModel()
                 {
                     Id = blogPosts[i].Id,
                     Title = blogPosts[i].Title,

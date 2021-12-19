@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TestBlog2.Models
 {
-    public class BlogPostsModel : BaseModel
+    public class BlogPostModel : BaseModel
     {
         public string Title { get; set; }
         public string Authorname { get; set; }

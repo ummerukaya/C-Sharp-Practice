@@ -12,7 +12,9 @@ namespace TestBlog2.Service
 
         BlogPost GetBlogPostById(int id);
 
-        void UpdateBlogPost(BlogPost blogPost, BlogPost updatedBlogPost);
+        void InsertBlogPost(BlogPost blogPost);
+
+        void UpdateBlogPost(BlogPost blogPost);
 
         void DeleteBlogPost(BlogPost blogPost);
         

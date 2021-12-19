@@ -9,8 +9,9 @@ namespace TestBlog2.Factory
 {
     public interface IBlogPostFactory
     {
-        List<BlogPostsModel> PrepareBlogPosts(List<BlogPost> blogPosts);
+        List<BlogPostModel> PrepareBlogPosts(List<BlogPost> blogPosts);
 
-        BlogPostsModel PrepareBlogPost(BlogPost blogPost);
+        BlogPostModel PrepareBlogPostModel(BlogPost blogPost);
+        BlogPost PrepareBlogPost(BlogPostModel blogPostModel);
     }
 }

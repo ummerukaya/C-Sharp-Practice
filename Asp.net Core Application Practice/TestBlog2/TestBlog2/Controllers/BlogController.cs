@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TestBlog2.DataSource;
 using TestBlog2.Entity;
 using TestBlog2.Factory;
+using TestBlog2.Models;
 using TestBlog2.Service;
 
 namespace TestBlog2.Controllers
@@ -45,7 +46,7 @@ namespace TestBlog2.Controllers
             }
             else
             {
-                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                var model = _blogPostFactory.PrepareBlogPostModel(blogPost);
                 return View(model);
             }
         }
@@ -60,11 +61,12 @@ namespace TestBlog2.Controllers
         // POST: HomeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(BlogPost blogPost)
+        public IActionResult Create(BlogPostModel blogPostModel)
         {
             try
             {
-                Datas.blogPosts.Add(blogPost);
+                var blogPost = _blogPostFactory.PrepareBlogPost(blogPostModel);
+                _blogPostService.InsertBlogPost(blogPost);
               
                 return RedirectToAction("Index");
             }
@@ -86,7 +88,7 @@ namespace TestBlog2.Controllers
             }
             else
             {
-                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                var model = _blogPostFactory.PrepareBlogPostModel(blogPost);
                 return View(model);
             }
         }
@@ -94,15 +96,17 @@ namespace TestBlog2.Controllers
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(BlogPost blogPost)
+        public IActionResult Edit(BlogPostModel blogPostModel)
         {
             try
             {
-                var blog = blogPost;
-                var b = _blogPostService.GetBlogPostById(blogPost.Id);
-                if (b != null)
+
+                var blogPost = _blogPostService.GetBlogPostById(blogPostModel.Id);
+
+                if (blogPost != null)
                 {
-                    _blogPostService.UpdateBlogPost(b,blog);
+                    blogPost = _blogPostFactory.PrepareBlogPost(blogPostModel);
+                    _blogPostService.UpdateBlogPost(blogPost);
                 }
                 return RedirectToAction("Index");
             }
@@ -124,7 +128,7 @@ namespace TestBlog2.Controllers
             }
             else
             {
-                var model = _blogPostFactory.PrepareBlogPost(blogPost);
+                var model = _blogPostFactory.PrepareBlogPostModel(blogPost);
                 return View(model);
             }
             
@@ -133,10 +137,11 @@ namespace TestBlog2.Controllers
         // POST: HomeController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(BlogPost blogPost)
+        public IActionResult Delete(BlogPostModel blogPostModel)
         {
             try
             {
+                var blogPost = _blogPostFactory.PrepareBlogPost(blogPostModel);
                 var b = _blogPostService.GetBlogPostById(blogPost.Id);
                 if (b != null)
                 {

@@ -23,13 +23,29 @@ namespace TestBlog2.Service
         {
             Datas.blogPosts.Remove(blogPost);
         }
-        public void UpdateBlogPost(BlogPost blogPost,BlogPost updatedBlogPost)
+        public void UpdateBlogPost(BlogPost blogPost)
         {
-            var ind = Datas.blogPosts.IndexOf(blogPost);
-            Datas.blogPosts[ind].Title = updatedBlogPost.Title;
-            Datas.blogPosts[ind].Authorname = updatedBlogPost.Authorname;
-            Datas.blogPosts[ind].CreatedAt = updatedBlogPost.CreatedAt;
-            Datas.blogPosts[ind].BlogBody = updatedBlogPost.BlogBody;
+            var bp = (from s in Datas.blogPosts
+                     where s.Id == blogPost.Id
+                     select s).FirstOrDefault();
+            
+            var ind = Datas.blogPosts.IndexOf(bp);
+            Datas.blogPosts[ind] = blogPost;
+        }
+
+        public void InsertBlogPost(BlogPost blogPost)
+        {
+            var bp = Datas.blogPosts.LastOrDefault();
+
+            if (bp == null)
+            {
+                blogPost.Id = 1;
+            }
+            else
+            {
+                blogPost.Id = bp.Id + 1;
+            }
+            Datas.blogPosts.Add(blogPost);
         }
     }
 }
